@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/20
+  Time: 1:02
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h:outputScript>
+            $(document).ready(function () {
+                $("#answerEnglish").focus();
+            });
+            function play() {
+                var voice = document.createElement("audio");
+                voice.src = "http://translate.google.com/translate_tts?tl=en&amp;q=#{failBean.item.english}";
+                voice.play();
+            }
+        </h:outputScript>
+
+        <f:metadata>
+            <f:viewParam name="position" value="#{failBean.position}"/>
+            <f:viewParam name="answer-time" value="#{failBean.answerTime}"/>
+            <f:viewParam name="itemId" value="#{failBean.itemId}"/>
+            <f:viewAction action="#{failBean.initView}"/>
+        </f:metadata>
+
+        <h:messages errorClass="alert alert-danger" infoClass="alert alert-success" globalOnly="true"
+                    style="list-style: none; margin-left: -40px;"/>
+
+        <h:form prependId="false">
+            <div class="form-group">
+                <label for="japanese">日本語</label>
+                <h:outputText value="#{failBean.item.japanese}" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="english">正しい英語<![CDATA[&nbsp;]]>
+                    <a href="#" onclick="play()">音声</a>
+                </label>
+                <h:outputText id="english" styleClass="form-control" value="#{failBean.item.english}"/>
+            </div>
+            <div class="form-group">
+                <label for="answerEnglish">英語</label>
+                <h:inputText id="answerEnglish" styleClass="form-control" value="#{failBean.answerEnglish}"/>
+            </div>
+            <div class="form-group">
+                <h:commandButton id="nextButton" value="つぎへ" styleClass="btn btn-primary btn-lg"
+                                 action="#{failBean.next}"/>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

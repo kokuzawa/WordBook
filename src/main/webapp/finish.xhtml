@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/20
+  Time: 1:02
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:viewParam name="answer-time" value="#{finishBean.answerTime}"/>
+            <f:viewAction action="#{finishBean.initView}"/>
+        </f:metadata>
+
+        <h:outputText value="テスト終了です。おつかれさまでした！"
+                      styleClass="alert alert-success" style="display: block;"/>
+
+        <h:dataTable value="#{finishBean.answers}" var="answer" styleClass="table table-striped">
+            <h:column>
+                <f:facet name="header">日本語</f:facet>
+                <h:outputText value="#{answer.japanese}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">英語</f:facet>
+                <h:outputText value="#{answer.english}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">結果</f:facet>
+                <h:panelGroup rendered="#{!answer.answer}" styleClass="has-error" style="color: #a94442;">
+                    <h:outputText styleClass="glyphicon glyphicon-remove"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{answer.answer}" styleClass="has-success" style="color: #3c763d;">
+                    <h:outputText styleClass="glyphicon glyphicon-ok"/>
+                </h:panelGroup>
+            </h:column>
+        </h:dataTable>
+
+        <h:form prependId="false">
+            <h:commandButton id="nextButton" value="最初からやり直す" styleClass="btn btn-primary btn-lg"
+                             action="#{indexBean.start}"/>
+        </h:form>
+
+        <br/>
+
+    </ui:define>
+</ui:composition>

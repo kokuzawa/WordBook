@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/20
+  Time: 1:02
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h:outputScript>
+            $(document).ready(function () {
+                $("#english").focus();
+            });
+            function play() {
+                var voice = document.createElement("audio");
+                voice.src = "http://translate.google.com/translate_tts?tl=en&amp;q=#{questionBean.english}";
+                voice.play();
+            }
+        </h:outputScript>
+        <f:metadata>
+            <f:viewParam name="position" value="#{questionBean.position}"/>
+            <f:viewParam name="answer-time" value="#{questionBean.answerTime}"/>
+            <f:viewAction action="#{questionBean.initView}"/>
+        </f:metadata>
+
+        <h:messages errorClass="alert alert-danger" infoClass="alert alert-success"
+                    style="list-style: none; margin-left: -40px;"/>
+
+        <h:form prependId="false">
+
+            <div class="form-group">
+                <label for="japanese">日本語</label>
+                <h:outputText value="#{questionBean.japanese}" styleClass="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="english">英語<![CDATA[&nbsp;]]>
+                    <a href="#" onclick="play()">音声</a>
+                </label>
+                <h:inputText id="english" styleClass="form-control" value="#{questionBean.answerEnglish}"/>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-2">
+                    <h:commandButton value="確認" styleClass="btn btn-primary btn-lg" style="width: 100%"
+                                     action="#{questionBean.check}"/>
+                </div>
+                <div class="col-xs-2">
+                    <h:commandButton value="わからない" styleClass="btn btn-default btn-lg" style="width: 100%"
+                                     action="#{questionBean.doNotKnow}" immediate="true"/>
+                </div>
+                <div class="col-xs-2">
+                    <h:commandButton value="やめる" styleClass="btn btn-default btn-lg" style="width: 100%"
+                                     action="#{questionBean.quit}"
+                                     immediate="true"/>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

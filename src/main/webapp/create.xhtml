@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/29
+  Time: 10:40
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h:outputScript>
+            $(document).ready(function () {
+            $("#japanese").focus();
+            });
+        </h:outputScript>
+
+        <f:metadata>
+            <f:viewAction action="#{createBean.initView}"/>
+        </f:metadata>
+
+        <h:messages errorClass="alert alert-danger" infoClass="alert alert-success" globalOnly="true"
+                    style="list-style: none; margin-left: -40px;"/>
+
+        <h:form prependId="false">
+            <div class="form-group">
+                <label for="japanese">日本語</label>
+                <h:message for="japanese" styleClass="alert alert-danger" style="display: block; margin: 5px 0;"/>
+                <h:inputText id="japanese" styleClass="form-control" value="#{createBean.japanese}"/>
+            </div>
+            <div class="form-group">
+                <label for="english">英語</label>
+                <h:message for="english" styleClass="alert alert-danger" style="display: block; margin: 5px 0;"/>
+                <h:inputText id="english" styleClass="form-control" value="#{createBean.english}"/>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <h:commandButton value="登録" styleClass="btn btn-primary btn-lg" style="width: 100%"
+                                     actionListener="#{createBean.persist}"
+                                     outcome="create.xhtml?faces-redirect=true"/>
+                </div>
+                <div class="col-md-2">
+                    <h:button value="キャンセル" styleClass="btn btn-default btn-lg" style="width: 100%"
+                              outcome="index.xhtml?faces-redirect=true"/>
+                </div>
+            </div>
+        </h:form>
+
+        <h:form>
+            <h:dataTable value="#{createBean.items}" var="item" styleClass="table table-striped">
+                <h:column>
+                    <f:facet name="header">日本語</f:facet>
+                    <h:outputText value="#{item.japanese}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">英語</f:facet>
+                    <h:outputText value="#{item.english}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><![CDATA[&nbsp;]]></f:facet>
+                    <h:commandButton value="削除" actionListener="#{createBean.remove(item.itemId)}"
+                                     styleClass="btn btn-default btn-sm"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

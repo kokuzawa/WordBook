@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/20
+  Time: 1:02
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+
+        <h:form>
+            <h:messages errorClass="alert alert-danger" infoClass="alert alert-success"
+                        style="list-style: none; margin-left: -40px;"/>
+
+            <div class="form-group">
+                <h:commandButton value="テストを始める" styleClass="btn btn-primary btn-lg" action="#{indexBean.start}"/>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

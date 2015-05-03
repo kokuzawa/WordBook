@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Katsumi
+  Date: 15/04/20
+  Time: 1:02
+-->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h:outputScript>
+            $(document).ready(function () {
+                $("#nextButton").focus();
+            });
+        </h:outputScript>
+
+        <f:metadata>
+            <f:viewParam name="position" value="#{successBean.position}"/>
+            <f:viewParam name="answer-time" value="#{successBean.answerTime}"/>
+        </f:metadata>
+
+        <h:outputText value="正解！" styleClass="alert alert-success" style="display: block;"/>
+
+        <h:form prependId="false">
+            <h:commandButton id="nextButton" value="つぎへ" styleClass="btn btn-primary btn-lg"
+                             action="#{successBean.next}"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
