@@ -37,24 +37,18 @@
             </div>
             <div class="form-group">
                 <label for="english">英語<![CDATA[&nbsp;]]>
-                    <a href="#" onclick="play()">音声</a>
+                    <a href="javascript:play()">音声</a>
                 </label>
                 <h:inputText id="english" styleClass="form-control" value="#{questionBean.answerEnglish}"/>
             </div>
-            <div class="form-group row">
-                <div class="col-xs-2">
-                    <h:commandButton value="確認" styleClass="btn btn-primary btn-lg" style="width: 100%"
-                                     action="#{questionBean.check}"/>
-                </div>
-                <div class="col-xs-2">
-                    <h:commandButton value="わからない" styleClass="btn btn-default btn-lg" style="width: 100%"
-                                     action="#{questionBean.doNotKnow}" immediate="true"/>
-                </div>
-                <div class="col-xs-2">
-                    <h:commandButton value="やめる" styleClass="btn btn-default btn-lg" style="width: 100%"
-                                     action="#{questionBean.quit}"
-                                     immediate="true"/>
-                </div>
+            <div class="form-group">
+                <h:commandButton value="確認" styleClass="btn btn-primary btn-lg" style="margin-right: 5px;"
+                                 action="#{questionBean.check}"/>
+                <h:commandButton value="わからない" styleClass="btn btn-default btn-lg" style="margin-right: 5px;"
+                                 action="#{questionBean.doNotKnow}" immediate="true"/>
+                <h:commandButton value="やめる" styleClass="btn btn-default btn-lg"
+                                 action="#{questionBean.quit}"
+                                 immediate="true"/>
             </div>
         </h:form>
 
