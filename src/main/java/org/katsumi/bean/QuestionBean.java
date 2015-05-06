@@ -30,7 +30,6 @@ public class QuestionBean implements Serializable
     private AnswerDao answerDao;
 
     @Getter
-    @Setter
     private String japanese;
 
     @Getter
