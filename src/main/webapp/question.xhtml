@@ -39,7 +39,8 @@
                 <label for="english">英語<![CDATA[&nbsp;]]>
                     <a href="javascript:play()">音声</a>
                 </label>
-                <h:inputText id="english" styleClass="form-control" value="#{questionBean.answerEnglish}"/>
+                <h:inputText id="english" styleClass="form-control" value="#{questionBean.answerEnglish}"
+                             autocomplete="off"/>
             </div>
             <div class="form-group">
                 <h:commandButton value="確認" styleClass="btn btn-primary btn-lg" style="margin-right: 5px;"
