@@ -10,13 +10,13 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <h:outputScript>
+        <h:outputScript target="head">
             $(document).ready(function () {
                 $("#english").focus();
             });
             function play() {
-                var voice = document.createElement("audio");
-                voice.src = "http://translate.google.com/translate_tts?tl=en&amp;q=#{questionBean.english}";
+                var voice = new Audio();
+                voice.src = "${request.contextPath}/rest/tts?text=#{questionBean.english}";
                 voice.play();
             }
         </h:outputScript>

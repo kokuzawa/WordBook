@@ -15,8 +15,8 @@
                 $("#answerEnglish").focus();
             });
             function play() {
-                var voice = document.createElement("audio");
-                voice.src = "http://translate.google.com/translate_tts?tl=en&amp;q=#{failBean.item.english}";
+                var voice = new Audio();
+                voice.src = "${request.contextPath}/rest/tts?text=#{questionBean.english}";
                 voice.play();
             }
         </h:outputScript>
@@ -44,7 +44,8 @@
             </div>
             <div class="form-group">
                 <label for="answerEnglish">英語</label>
-                <h:inputText id="answerEnglish" styleClass="form-control" value="#{failBean.answerEnglish}"/>
+                <h:inputText id="answerEnglish" styleClass="form-control" value="#{failBean.answerEnglish}"
+                             autocomplete="false"/>
             </div>
             <div class="form-group">
                 <h:commandButton id="nextButton" value="つぎへ" styleClass="btn btn-primary btn-lg"
