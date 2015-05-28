@@ -10,16 +10,28 @@ import javax.inject.Named;
 import java.util.Date;
 
 /**
+ * 開始画面クラス
+ *
  * @author Katsumi
- * @since 15/05/02
+ * @since May 2, 2015
  */
 @Named
 @RequestScoped
 public class IndexBean
 {
+    /**
+     * 単語データクセスオブジェクト
+     */
     @Inject
     private ItemDao itemDao;
 
+    /**
+     * テストを開始するボタンがクリックされた場合に呼ばれます。<br/>
+     * 単語が登録されていない場合はエラーメッセージを設定して本画面を再表示します。
+     * 単語が登録されている場合は質問画面に遷移します。
+     *
+     * @return outcome
+     */
     public String start()
     {
         if (itemDao.findAll().isEmpty()) {

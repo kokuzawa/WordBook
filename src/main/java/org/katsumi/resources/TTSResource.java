@@ -10,12 +10,21 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
+ * Google翻訳サービスクラス
+ *
  * @author Katsumi
- * @since 15/05/07
+ * @since May 7, 2015
  */
 @Path("/tts")
 public class TTSResource
 {
+    /**
+     * 入力された英単語の音声ファイルをダウンロードします。
+     *
+     * @param text 英単語
+     * @return 英単語の音声ファイル
+     * @throws IOException Google翻訳への接続に失敗した場合
+     */
     @GET
     @Produces("audio/mpeg")
     public Response textToSpeech(@QueryParam("text") String text) throws IOException

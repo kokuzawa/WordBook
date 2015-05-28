@@ -12,24 +12,39 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 終了画面クラス
+ *
  * @author Katsumi
- * @since 15/05/03
+ * @since May 3, 2015
  */
 @Named
 @RequestScoped
 public class FinishBean
 {
+    /**
+     * 回答データアクセスオブジェクト
+     */
     @Inject
     private AnswerDao answerDao;
 
+    /**
+     * 回答日時
+     */
     @Getter
     @Setter
     private long answerTime;
 
+    /**
+     * 回答リスト
+     */
     @Getter
     @Setter
     private List<Answer> answers;
 
+    /**
+     * 画面表示時に呼ばれます。<br/>
+     * 回答リストをデータベースから取得します。
+     */
     public void initView()
     {
         answers = answerDao.findByAnswerDate(new Date(answerTime));

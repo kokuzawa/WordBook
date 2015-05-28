@@ -4,8 +4,10 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
+ * RESTful API用アプリケーションクラス
+ *
  * @author Katsumi
- * @since 15/05/07
+ * @since May 7, 2015
  */
 @ApplicationPath("/rest")
 public class RestApplication extends Application
